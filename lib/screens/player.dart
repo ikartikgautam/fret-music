@@ -26,6 +26,24 @@ class _PlayerState extends State<Player> {
                 },
               ),
               // Player Info
+              Expanded(
+                flex: 2,
+                child: Container(
+                  child: Text('asd'),
+                ),
+              ),
+              Expanded(
+                  flex: 1,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(25),
+                            topRight: Radius.circular(25)),
+                        color: Colors.white),
+                    child: Text('asd'),
+                    width: double.infinity,
+                    padding: EdgeInsets.all(25),
+                  )),
             ],
           ),
           width: double.infinity,
