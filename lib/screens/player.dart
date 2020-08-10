@@ -10,36 +10,27 @@ class _PlayerState extends State<Player> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: SafeArea(
+        child: Container(
           child: Column(
-        children: <Widget>[
-          // Search Box
-          Container(
-            color: Colors.red,
-            child: Text('data'),
-            width: double.infinity,
-          ),
-          // Player Info Panel
-          Expanded(
-            child: Container(
-              width: double.infinity,
-              child: RaisedButton(
-                onPressed: () {
-                  convert('OmF1AY3sO9Q', 'ritviz');
+            children: <Widget>[
+              // Search Box
+              TextField(
+                decoration: InputDecoration(
+                    fillColor: Colors.white,
+                    hintText: 'Search..',
+                    filled: true),
+                onChanged: (text) {
+                  print(text);
                 },
-                child: Text('CONVERT'),
               ),
-              color: Colors.blue,
-            ),
+              // Player Info
+            ],
           ),
-          // Bottom Controls Panel
-          Container(
-            width: double.infinity,
-            child: Text('Controls'),
-            color: Colors.red,
-          )
-        ],
-      )),
+          width: double.infinity,
+        ),
+      ),
     );
   }
 }
