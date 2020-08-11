@@ -7,6 +7,19 @@ import 'package:path_provider/path_provider.dart';
 var yt = YoutubeExplode();
 final FlutterFFmpeg _flutterFFmpeg = new FlutterFFmpeg();
 
+search(String query) async {
+  var res = await yt.search.queryFromPage(query);
+  // String result = res.content[0].toString();
+  // String id = result.substring(
+  //     (result.lastIndexOf('(') + 1), (result.lastIndexOf(')')));
+  // print(id);
+  List arr = [];
+  res.content.forEach((element) {
+    arr.add(element);
+  });
+  return arr;
+}
+
 convert(String vdo, String fileName) async {
   final Directory appDirectory = await getExternalStorageDirectory();
   final String videoDirectory = '${appDirectory.path}/Videos';
