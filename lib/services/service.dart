@@ -8,15 +8,33 @@ var yt = YoutubeExplode();
 final FlutterFFmpeg _flutterFFmpeg = new FlutterFFmpeg();
 
 search(String query) async {
-  var res = await yt.search.queryFromPage(query);
+  // var res = await yt.search.queryFromPage(query);
+
   // String result = res.content[0].toString();
   // String id = result.substring(
   //     (result.lastIndexOf('(') + 1), (result.lastIndexOf(')')));
   // print(id);
-  List arr = [];
-  res.content.forEach((element) {
-    arr.add(element);
-  });
+
+  // List arr = [];
+  // res.content.forEach((element) {
+  //   arr.add(element);
+  // });
+
+// Get playlist metadata.
+  var playlist = await yt.playlists.get('PLQLqnnnfa_fAkUmMFw5xh8Kv0S5voEjC9');
+
+  var title = playlist.title; // "Igorrr - Hallelujah"
+  var author = playlist.author; // "randomusername604"
+
+  await for (var video in yt.playlists.getVideos(playlist.id)) {
+    var videoTitle = video.id;
+    var videoAuthor = video.author;
+  }
+
+  List arr = await yt.search.getVideosAsync(query).toList();
+
+  print(arr);
+
   return arr;
 }
 
