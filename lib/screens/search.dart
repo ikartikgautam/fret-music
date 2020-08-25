@@ -26,9 +26,14 @@ class _SearchMenuState extends State<SearchMenu> {
         children: <Widget>[
           for (var i in searchRes)
             Container(
-              child: Text(
-                i.toString(),
-                style: TextStyle(color: Colors.white),
+              child: GestureDetector(
+                onTap: () {
+                  convert(i.id.toString(), i.title.toString());
+                },
+                child: Text(
+                  i.title,
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
               width: double.infinity,
               color: Colors.black,
