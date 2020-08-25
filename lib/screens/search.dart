@@ -22,26 +22,28 @@ class _SearchMenuState extends State<SearchMenu> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-          child: Column(
-        children: <Widget>[
-          for (var i in searchRes)
-            Container(
-              child: GestureDetector(
-                onTap: () {
-                  convert(i.id.toString(), i.title.toString());
-                },
-                child: Text(
-                  i.title,
-                  style: TextStyle(color: Colors.white),
+        child: ListView(
+          children: <Widget>[
+            for (var i in searchRes)
+              ListTile(
+                isThreeLine: true,
+                trailing: IconButton(
+                  icon: Icon(Icons.more_vert),
+                  onPressed: () {
+                    // to implement pop up menu here
+                  },
                 ),
-              ),
-              width: double.infinity,
-              color: Colors.black,
-              padding: EdgeInsets.fromLTRB(3, 3, 3, 3),
-              margin: EdgeInsets.fromLTRB(3, 6, 3, 6),
-            ),
-        ],
-      )),
+                subtitle: Text(i.author.toString()),
+                leading: Image.network(i.thumbnails.lowResUrl),
+                title: Text(getTitle(i.title)),
+                onTap: () async {
+                  await convert(i.id.toString(), i.title.toString());
+                  Navigator.pop(context);
+                },
+              )
+          ],
+        ),
+      ),
     );
   }
 
@@ -53,5 +55,12 @@ class _SearchMenuState extends State<SearchMenu> {
       searchRes = temp;
     });
     print(searchRes);
+  }
+
+  String getTitle(String str) {
+    if (str.length < 30) {
+      return str;
+    }
+    return str.substring(0, 30) + '...';
   }
 }

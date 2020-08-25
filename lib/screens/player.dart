@@ -8,6 +8,8 @@ class Player extends StatefulWidget {
   _PlayerState createState() => _PlayerState();
 }
 
+bool play = true;
+
 class _PlayerState extends State<Player> {
   @override
   Widget build(BuildContext context) {
@@ -24,6 +26,9 @@ class _PlayerState extends State<Player> {
                     hintText: 'Search..',
                     filled: true),
                 onSubmitted: (val) {
+                  setState(() {
+                    play = false;
+                  });
                   Navigator.push(
                       context,
                       CupertinoPageRoute(
@@ -62,14 +67,24 @@ class _PlayerState extends State<Player> {
                               ),
                               onPressed: () {}),
                         ),
-                        Expanded(
-                          child: IconButton(
-                              icon: Icon(
-                                Icons.pause_circle_filled,
-                                size: 80,
-                              ),
-                              onPressed: () {}),
-                        ),
+                        if (play)
+                          Expanded(
+                              child: IconButton(
+                            icon: Icon(Icons.pause_circle_filled, size: 50),
+                            onPressed: () {
+                              print("pause");
+                              pauseAudio();
+                            },
+                          )),
+                        if (!play)
+                          Expanded(
+                              child: IconButton(
+                            icon: Icon(Icons.play_arrow, size: 50),
+                            onPressed: () {
+                              print("pause");
+                              pauseAudio();
+                            },
+                          )),
                         Expanded(
                           child: IconButton(
                               icon: Icon(
@@ -77,7 +92,7 @@ class _PlayerState extends State<Player> {
                                 size: 50,
                               ),
                               onPressed: () {}),
-                        )
+                        ),
                       ],
                     ),
                     width: double.infinity,
